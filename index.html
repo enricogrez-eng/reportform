@@ -4,6 +4,28 @@
   <meta charset="UTF-8">
   <title>Generar Reporte</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Extra styles for messages */
+    #message {
+      margin-top: 20px;
+      padding: 12px;
+      border-radius: 6px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    #message.success {
+      background: #e6ffed;
+      color: #006400;
+      border: 1px solid #00a000;
+    }
+
+    #message.error {
+      background: #ffe6e6;
+      color: #a00000;
+      border: 1px solid #cc0000;
+    }
+  </style>
 </head>
 <body>
   <div class="contact-us">
@@ -49,6 +71,10 @@
       const formData = new FormData(e.target);
       const data = Object.fromEntries(formData.entries());
 
+      const messageBox = document.getElementById("message");
+      messageBox.className = ""; // reset classes
+      messageBox.innerText = "Enviando...";
+
       try {
         const response = await fetch("https://haulmerinc.app.n8n.cloud/webhook-test/reporte", {
           method: "POST",
@@ -57,9 +83,13 @@
         });
 
         const result = await response.json();
-        document.getElementById("message").innerText = result.message || "Solicitud enviada";
+
+        messageBox.innerText = result.message || "Solicitud enviada";
+        messageBox.className = result.success ? "success" : "error";
+
       } catch (error) {
-        document.getElementById("message").innerText = "Error al enviar el formulario";
+        messageBox.innerText = "Error al enviar el formulario";
+        messageBox.className = "error";
       }
     });
   </script>
