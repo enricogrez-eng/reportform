@@ -3,48 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <title>Generar Reporte</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 2rem; }
-    label { display: block; margin-top: 1rem; }
-    input, select, button { padding: 0.5rem; width: 100%; max-width: 400px; }
-    #message { margin-top: 1.5rem; font-weight: bold; }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h2>Formulario de Reporte</h2>
-  <form id="reporteForm">
-    
-    <label>RUT:</label>
-    <input type="text" name="rut" required />
+  <div class="contact-us">
+    <h2>Formulario de Reporte</h2>
+    <form id="reporteForm">
+      
+      <label>RUT:</label>
+      <input type="text" name="rut" required />
 
-    <label>¿Es un cliente activo?</label>
-    <select name="cliente_activo" required>
-      <option value="">Seleccione...</option>
-      <option value="si">Sí</option>
-      <option value="no">No</option>
-    </select>
+      <label>¿Es un cliente activo?</label>
+      <select name="cliente_activo" required>
+        <option value="">Seleccione...</option>
+        <option value="si">Sí</option>
+        <option value="no">No</option>
+      </select>
 
-    <label>Tipo de reporte:</label>
-    <select name="tipo_reporte" required>
-      <option value="ventas_todos">Informe de ventas todo método de pago</option>
-      <option value="ventas_efectivo">Informe de ventas solo efectivo</option>
-      <option value="productos_por_venta">Reporte de productos por cada venta</option>
-      <option value="documentos_sin_modelo">Reporte de documentos sin modelo de emisión</option>
-    </select>
+      <label>Tipo de reporte:</label>
+      <select name="tipo_reporte" required>
+        <option value="ventas_todos">Informe de ventas todo método de pago</option>
+        <option value="ventas_efectivo">Informe de ventas solo efectivo</option>
+        <option value="productos_por_venta">Reporte de productos por cada venta</option>
+        <option value="documentos_sin_modelo">Reporte de documentos sin modelo de emisión</option>
+      </select>
 
-    <label>Fecha inicio:</label>
-    <input type="date" name="fecha_inicio" required />
+      <label>Fecha inicio:</label>
+      <input type="date" name="fecha_inicio" required />
 
-    <label>Fecha fin:</label>
-    <input type="date" name="fecha_fin" required />
+      <label>Fecha fin:</label>
+      <input type="date" name="fecha_fin" required />
 
-    <label>Correo destinatario:</label>
-    <input type="email" name="correo_destinatario" required />
+      <label>Correo destinatario:</label>
+      <input type="email" name="correo_destinatario" required />
 
-    <button type="submit">Generar</button>
-  </form>
+      <button type="submit">Generar</button>
+    </form>
 
-  <div id="message"></div>
+    <div id="message"></div>
+  </div>
 
   <script>
     document.getElementById("reporteForm").addEventListener("submit", async (e) => {
