@@ -84,3 +84,24 @@ input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px #f8f4e5 inset;
   transition: background-color 5000s ease-in-out 0s;
 }
+
+#message {
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#message.success {
+  background: #e6ffed;
+  color: #006400;
+  border: 1px solid #00a000;
+}
+
+#message.error {
+  background: #ffe6e6;
+  color: #a00000;
+  border: 1px solid #cc0000;
+}
+
