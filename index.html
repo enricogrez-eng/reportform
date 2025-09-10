@@ -3,77 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <title>Generar Reporte</title>
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    /* Extra styles for messages */
-    #message {
-      margin-top: 20px;
-      padding: 12px;
-      border-radius: 6px;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    #message.success {
-      background: #e6ffed;
-      color: #006400;
-      border: 1px solid #00a000;
-    }
-
-    #message.error {
-      background: #ffe6e6;
-      color: #a00000;
-      border: 1px solid #cc0000;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css"> <!-- make sure to load your CSS -->
 </head>
 <body>
-  <div class="contact-us">
-    <h2>Formulario de Reporte</h2>
-    <form id="reporteForm">
-      
-      <label>RUT:</label>
-      <input type="text" name="rut" required />
+  <h2>Formulario de Reporte</h2>
+  
+  <form id="reporteForm" class="form">
+    
+    <!-- RUT -->
+    <div>
+      <input class="form__input" type="text" name="rut" id="rut" placeholder="RUT" required />
+      <label class="form__label" for="rut">RUT</label>
+    </div>
 
-      <label>¿Es un cliente activo?</label>
-      <select name="cliente_activo" required>
-        <option value="">Seleccione...</option>
+    <!-- Cliente Activo -->
+    <div>
+      <select class="form__input" name="cliente_activo" id="cliente_activo" required>
+        <option value="" disabled selected></option>
         <option value="si">Sí</option>
         <option value="no">No</option>
       </select>
+      <label class="form__label" for="cliente_activo">¿Es un cliente activo?</label>
+    </div>
 
-      <label>Tipo de reporte:</label>
-      <select name="tipo_reporte" required>
-        <option value="ventas_todos">Informe de ventas todo método de pago</option>
-        <option value="ventas_efectivo">Informe de ventas solo efectivo</option>
-        <option value="productos_por_venta">Reporte de productos por cada venta</option>
-        <option value="documentos_sin_modelo">Reporte de documentos sin modelo de emisión</option>
+    <!-- Tipo de reporte -->
+    <div>
+      <select class="form__input" name="tipo_reporte" id="tipo_reporte" required>
+        <option value="" disabled selected></option>
+        <option value="ventas_todos">Ventas - Todo método de pago</option>
+        <option value="ventas_efectivo">Ventas - efectivo</option>
+        <option value="productos_por_venta">Detalle de item por venta</option>
+        <option value="documentos_sin_modelo">Ventas + sin modelo de emisión</option>
+        <option value="boletas">Boletas</option>
       </select>
+      <label class="form__label" for="tipo_reporte">Tipo de reporte</label>
+    </div>
 
-      <label>Fecha inicio:</label>
-      <input type="date" name="fecha_inicio" required />
+    <!-- Fecha inicio -->
+    <div>
+      <input class="form__input" type="date" name="fecha_inicio" id="fecha_inicio" placeholder=" " required />
+      <label class="form__label" for="fecha_inicio">Fecha inicio</label>
+    </div>
 
-      <label>Fecha fin:</label>
-      <input type="date" name="fecha_fin" required />
+    <!-- Fecha fin -->
+    <div>
+      <input class="form__input" type="date" name="fecha_fin" id="fecha_fin" placeholder=" " required />
+      <label class="form__label" for="fecha_fin">Fecha fin</label>
+    </div>
 
-      <label>Correo destinatario:</label>
-      <input type="email" name="correo_destinatario" required />
+    <!-- Correo -->
+    <div>
+      <input class="form__input" type="email" name="correo_destinatario" id="correo_destinatario" placeholder=" " required />
+      <label class="form__label" for="correo_destinatario">Correo destinatario</label>
+    </div>
 
-      <button type="submit">Generar</button>
-    </form>
+    <button type="submit">Generar</button>
+  </form>
 
-    <div id="message"></div>
-  </div>
+  <div id="message"></div>
 
   <script>
     document.getElementById("reporteForm").addEventListener("submit", async (e) => {
       e.preventDefault();
       const formData = new FormData(e.target);
       const data = Object.fromEntries(formData.entries());
-
-      const messageBox = document.getElementById("message");
-      messageBox.className = ""; // reset classes
-      messageBox.innerText = "Enviando...";
 
       try {
         const response = await fetch("https://haulmerinc.app.n8n.cloud/webhook-test/reporte", {
@@ -83,13 +76,9 @@
         });
 
         const result = await response.json();
-
-        messageBox.innerText = result.message || "Solicitud enviada";
-        messageBox.className = result.success ? "success" : "error";
-
+        document.getElementById("message").innerText = result.message || "Solicitud enviada";
       } catch (error) {
-        messageBox.innerText = "Error al enviar el formulario";
-        messageBox.className = "error";
+        document.getElementById("message").innerText = "Error al enviar el formulario";
       }
     });
   </script>
