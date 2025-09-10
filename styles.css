@@ -1,107 +1,230 @@
-@import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
+/* #################### ################################ #################### */
+/* #################### RELEVANT CODE STARTS AT LINE 145 #################### */
+/* #################### ################################ #################### */
 
-body {
-  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-2210775-jpeg.jpg") center center no-repeat;
-  background-size: cover;
-  width: 100vw;
-  height: 100vh;
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  font-family: 'Fjalla One', Arial, sans-serif;
-  color: #2A293E;
+// Inter / Sans-serif
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* Global Styles */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
 }
 
-.contact-us {
-  background: #f8f4e5;
-  padding: 50px 100px;
-  border: 2px solid rgba(0,0,0,1);
-  box-shadow: 15px 15px 1px #ffa580, 15px 15px 1px 2px rgba(0,0,0,1);
-  max-width: 500px;
-  width: 100%;
+html {
+  $black: #303030;
+  $grey: #909090;
+  $off-white: #EDEEE9;
+  $code: #D8DBCE;
+  position: relative;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  $sans-serif: 'Inter', sans-serif;
+  background-color: $off-white;
+  
+  body {
+    background-color: $off-white;
+    color: $black;
+    font-family: $sans-serif;
+    min-height: 100vh;
+    width: 100%;
+    padding: 2.5vh 10vw;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    
+    h1 {
+      font-size: clamp(1rem, 6vw, 10rem);
+      margin: 15vh 0 2rem;
+    }
+    
+    a {
+      text-decoration: underline;
+      color: $black;
+    }
+    
+    code {
+      font-size: 1rem;
+      padding: 0 0.5rem;
+      background-color: $code;
+    }
+    
+    .explanation {
+      width: 100%;
+      margin-bottom: 15vh;
+      p {
+        font-size: 1rem;
+        max-width: 75ch;
+        margin: 2rem 0;
+      }
+      
+      ul:last-child {
+        margin-bottom: 2rem;
+      }
+      ul {
+        display: flex;
+        flex-direction: column;
+        
+        li {
+          list-style: none;
+          position: relative;
+          margin: 0.5rem 0;
+          &::before {
+            content: '👉';
+            position: absolute;
+            top: -0.25rem;
+            left: -2rem;
+          }
+        }
+      }
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 768px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 2rem 1.5rem;
+      background-color: $code;
+      
+      @media (min-width: 768px) {
+        flex-direction: row;
+        align-items: center;
+      }
+      
+      .cta-form {
+        margin-bottom: 2rem;
+        text-align: center;
+        
+        @media (min-width: 768px) {
+          margin-bottom: 0;
+          margin-right: 2rem;
+          text-align: left;
+        }
+        
+        h2 {
+        font-size: 1.5rem;
+        width: 100%;
+        max-width: 25ch;
+        margin: 0 auto;
+        text-align: center;
+        
+          @media (min-width: 768px) {
+            text-align: left;
+            margin: 0;
+          }
+        }
+        
+        p {
+          margin-top: 1rem;
+          font-size: 1rem;
+          width: 100%;
+          max-width: 24ch;
+        }
+      }
+      
+    }
+    
 }
+  
+  // Before someone yells at me for my improper use of SCSS— I know— 
+  // This isn't using SCSS's 'cascading' methodology. The form's styling is outside of the body tag.
+  // I'm just doing it this way so I can minimize non-relevant code. 😁
+  /* #################### ########################### #################### */
+  /* #################### All form-related CSS below. #################### */
+  /* #################### ########################### #################### */
+  
+  .form {
+      align-self: center;
+    }
+   
+    // I would use the BEM method here for declaring styles,
+    // but for the sake of clarity, I decided not to.*
+  
+    // Just some basic input field styling.
+    .form__input {
+      width: clamp(120px, 50vw, 420px);
+      height: 2.5rem;
+      padding: 0 1.25rem;
+      border: 1px solid $black;
+      border-radius: 2px;
+      margin: 0.625rem auto;
+      transition: all 250ms;
+      @media (min-width: 768px) {
+        width: clamp(120px, 35vw, 420px);
+      }
+      
+      // This is basically saying when the form__input class is in focus
+      &:focus {
+        outline: none;
+        border-top-color: rgba(0,0,0,0.1);
+      }
+      
+      // How to read this:
+      /* When the input field (.form__input) is in focus, 
+         transform the .form__label and change colors*/
+      /* ALSO, if the input field's placeholder is NOT shown (when the input field has content),
+         transform the .form__label and change colors. */
+      &:focus + .form__label, &:not(:placeholder-shown) + .form__label {
+        transform: translateY(-4.50rem) scale(1);
+        color: $black;
+      }
+      
+      /* THIS PART IS IMPORTANT!! */
+      /* The block below hides the placeholder entirely. */
+      /* For all intents and purposes, the placeholder no longer exists. */
+      /* What shows on the input field is only the label*. */
+      /* HOWEVER, the input fields still recognizes that the placeholder exists!*/
+      /* The placeholder is just invisible. We need the placeholder to exist for
+         some weird CSS stuff. If we skip this, we can't make it CSS-only. */
+      &::placeholder {
+          display: none;
+          color: transparent;
+        
+          // Prevents users from highlighting the placeholder.
+          -webkit-user-select: none; /* Safari */
+          -ms-user-select: none; /* IE 10 and IE 11 */
+          user-select: none; /* Standard syntax */
+      }
+      
+      // How to read this:
+      /* When the placeholder is NOT shown,
+         style the top border. */
+      /* This makes the top border fade-out when the placeholder disappears. */
+      &:not(:placeholder-shown) {
+        border-top-color: rgba(0, 0, 0, 0.5);
+      }
+    }
 
-h2 {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-label {
-  margin-top: 1rem;
-  display: block;
-}
-
-input,
-select {
-  display: block;
-  width: 100%;
-  font-size: 14pt;
-  line-height: 28pt;
-  margin-bottom: 28pt;
-  border: none;
-  border-bottom: 5px solid rgba(0,0,0,1);
-  background: #f8f4e5;
-  min-width: 250px;
-  padding-left: 5px;
-  outline: none;
-  color: #2A293E;
-}
-
-input:focus,
-select:focus {
-  border-bottom: 5px solid #ffa580;
-}
-
-button {
-  display: block;
-  margin: 0 auto;
-  line-height: 28pt;
-  padding: 0 20px;
-  background: #ffa580;
-  letter-spacing: 2px;
-  transition: .2s all ease-in-out;
-  outline: none;
-  border: 1px solid rgba(0,0,0,1);
-  box-shadow: 3px 3px 1px 1px #95a4ff, 3px 3px 1px 2px rgba(0,0,0,1);
-  cursor: pointer;
-}
-
-button:hover {
-  background: rgba(0,0,0,1);
-  color: white;
-  border: 1px solid rgba(0,0,0,1);
-}
-
-::selection {
-  background: #ffc8ff;
-}
-
-input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus {
-  border-bottom: 5px solid #95a4ff;
-  -webkit-text-fill-color: #2A293E;
-  -webkit-box-shadow: 0 0 0px 1000px #f8f4e5 inset;
-  transition: background-color 5000s ease-in-out 0s;
-}
-
-#message {
-  margin-top: 20px;
-  padding: 12px;
-  border-radius: 6px;
-  font-weight: bold;
-  text-align: center;
-}
-
-#message.success {
-  background: #e6ffed;
-  color: #006400;
-  border: 1px solid #00a000;
-}
-
-#message.error {
-  background: #ffe6e6;
-  color: #a00000;
-  border: 1px solid #cc0000;
-}
-
+    .form__label {
+      font-size: 1rem;
+      color: $grey;
+      display: block;
+      
+      /* Moves the label on TOP of the placeholder */
+      /* You'll need to change this as needed */
+      transform: translate(1.25rem,-2.5rem);
+      transform-origin: 0 0; /* Used later for transitions */
+      transition: all 500ms;
+      
+      // Prevents users from highlighting the label.
+      -webkit-user-select: none; /* Safari */
+      -ms-user-select: none; /* IE 10 and IE 11 */
+      user-select: none; /* Standard syntax */
+      
+      /* THIS PART IS IMPORTANT! */
+      /* This line prevents the label from being selected.*/
+      /* This is crucial because if this line doesn't exist, users can
+         click on the label, instead of the input field. That's bad UX! */
+      pointer-events: none; 
+    }
+    
+  }
