@@ -1,5 +1,3 @@
-/* styles.css - updated and fixed */
-
 /* Reset & base */
 *,
 *::before,
@@ -22,25 +20,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Color variables */
-:root {
-  --bg-800: #1f2937;
-  --bg-700: #374151;
-  --bg-600: #4b5563;
-  --text-200: #e5e7eb;
-  --ring-blue: #3b82f6;
-  --indigo-500: #6366f1;
-  --blue-500: #3b82f6;
-  --indigo-600: #4f46e5;
-  --blue-600: #2563eb;
-  --container-max-width: 420px;
-}
-
 /* Container */
 .form-container {
   width: 100%;
-  max-width: var(--container-max-width);
-  background: var(--bg-800);
+  max-width: 420px;
+  background: #1f2937; /* gray-800 */
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
   padding: 24px;
@@ -49,17 +33,23 @@ body {
 /* Heading */
 .form-container h2 {
   font-size: 1.375rem;
-  margin: 0 0 12px;
-  color: var(--text-200);
+  margin: 0 0 20px;
+  color: #e5e7eb;
   font-weight: 700;
+  text-align: center;
+}
+
+/* Form layout */
+.form-container form {
+  display: flex;
+  flex-direction: column;
 }
 
 /* Labels */
 .form-container label {
-  display: block;
-  margin-bottom: 6px;
   font-size: 0.9rem;
-  color: var(--text-200);
+  color: #e5e7eb;
+  margin-bottom: 6px;
   cursor: pointer;
 }
 
@@ -67,77 +57,51 @@ body {
 .form-container input[type="text"],
 .form-container input[type="email"],
 .form-container input[type="date"],
-.form-container input[type="password"],
 .form-container select {
   width: 100%;
   padding: 10px 12px;
-  background: var(--bg-700);
-  color: var(--text-200);
+  background: #374151; /* gray-700 */
+  color: #e5e7eb;
   border: none;
   border-radius: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   font-size: 0.95rem;
   transition: background 0.12s ease, box-shadow 0.12s ease, transform 0.06s ease;
 }
 
-/* Placeholder color */
 .form-container input::placeholder {
   color: #9ca3af;
 }
 
-/* Focus state */
 .form-container input:focus,
 .form-container select:focus {
   outline: none;
-  background: var(--bg-600);
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
-  transform: translateY(-1px);
-}
-
-/* Remove default select arrow in some browsers (keeps layout clean) */
-.form-container select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  padding-right: 36px; /* leave space for native arrow */
-}
-.form-container select::-ms-expand {
-  display: none;
+  background: #4b5563; /* gray-600 */
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
 }
 
 /* Buttons */
 .form-container button {
-  display: inline-block;
-  width: 100%;
   padding: 10px 14px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
   font-weight: 700;
   font-size: 0.98rem;
-  background: linear-gradient(to right, var(--indigo-500), var(--blue-500));
+  background: linear-gradient(to right, #6366f1, #3b82f6);
   color: #fff;
-  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+  transition: transform 0.12s ease, filter 0.12s ease;
 }
 .form-container button:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.02);
-  background: linear-gradient(to right, var(--indigo-600), var(--blue-600));
-}
-.form-container button:focus {
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.18);
-  outline: none;
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  background: linear-gradient(to right, #4f46e5, #2563eb);
 }
 
-/* Message area */
+/* Message */
 #message {
-  margin-top: 12px;
+  margin-top: 16px;
   font-weight: 700;
-  color: var(--text-200);
+  color: #e5e7eb;
   min-height: 1.2em;
-}
-
-/* Responsive tweaks */
-@media (max-width: 420px) {
-  .form-container { padding: 18px; border-radius: 10px; }
 }
