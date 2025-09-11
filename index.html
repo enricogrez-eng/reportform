@@ -3,64 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <title>Generar Reporte</title>
-  <link rel="stylesheet" href="styles.css"> <!-- make sure to load your CSS -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <h2>Formulario de Reporte</h2>
-  
-  <form id="reporteForm" class="form">
-    
-    <!-- RUT -->
-    <div>
-      <input class="form__input" type="text" name="rut" id="rut" placeholder="RUT" required />
-      <label class="form__label" for="rut">RUT</label>
-    </div>
+<body class="flex flex-col items-center justify-center h-screen dark bg-gray-900">
+  <div class="w-full max-w-md bg-gray-800 rounded-lg shadow-md p-6">
+    <h2 class="text-2xl font-bold text-gray-200 mb-4">Formulario de Reporte</h2>
+    <form id="reporteForm" class="flex flex-col">
 
-    <!-- Cliente Activo -->
-    <div>
-      <select class="form__input" name="cliente_activo" id="cliente_activo" required>
-        <option value="" disabled selected></option>
+      <label class="text-sm mb-2 text-gray-200 cursor-pointer">RUT</label>
+      <input
+        type="text"
+        name="rut"
+        required
+        class="bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 
+               focus:bg-gray-600 focus:outline-none focus:ring-1 
+               focus:ring-blue-500 transition ease-in-out duration-150"
+      />
+
+      <label class="text-sm mb-2 text-gray-200 cursor-pointer">¿Es un cliente activo?</label>
+      <select
+        name="cliente_activo"
+        required
+        class="bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 
+               focus:bg-gray-600 focus:outline-none focus:ring-1 
+               focus:ring-blue-500 transition ease-in-out duration-150"
+      >
+        <option value="">Seleccione...</option>
         <option value="si">Sí</option>
         <option value="no">No</option>
       </select>
-      <label class="form__label" for="cliente_activo">¿Es un cliente activo?</label>
-    </div>
 
-    <!-- Tipo de reporte -->
-    <div>
-      <select class="form__input" name="tipo_reporte" id="tipo_reporte" required>
-        <option value="" disabled selected></option>
+      <label class="text-sm mb-2 text-gray-200 cursor-pointer">Tipo de reporte</label>
+      <select
+        name="tipo_reporte"
+        required
+        class="bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 
+               focus:bg-gray-600 focus:outline-none focus:ring-1 
+               focus:ring-blue-500 transition ease-in-out duration-150"
+      >
         <option value="ventas_todos">Ventas - Todo método de pago</option>
         <option value="ventas_efectivo">Ventas - efectivo</option>
         <option value="productos_por_venta">Detalle de item por venta</option>
         <option value="documentos_sin_modelo">Ventas + sin modelo de emisión</option>
         <option value="boletas">Boletas</option>
       </select>
-      <label class="form__label" for="tipo_reporte">Tipo de reporte</label>
-    </div>
 
-    <!-- Fecha inicio -->
-    <div>
-      <input class="form__input" type="date" name="fecha_inicio" id="fecha_inicio" placeholder=" " required />
-      <label class="form__label" for="fecha_inicio">Fecha inicio</label>
-    </div>
+      <label class="text-sm mb-2 text-gray-200 cursor-pointer">Fecha inicio</label>
+      <input
+        type="date"
+        name="fecha_inicio"
+        required
+        class="bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 
+               focus:bg-gray-600 focus:outline-none focus:ring-1 
+               focus:ring-blue-500 transition ease-in-out duration-150"
+      />
 
-    <!-- Fecha fin -->
-    <div>
-      <input class="form__input" type="date" name="fecha_fin" id="fecha_fin" placeholder=" " required />
-      <label class="form__label" for="fecha_fin">Fecha fin</label>
-    </div>
+      <label class="text-sm mb-2 text-gray-200 cursor-pointer">Fecha fin</label>
+      <input
+        type="date"
+        name="fecha_fin"
+        required
+        class="bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 
+               focus:bg-gray-600 focus:outline-none focus:ring-1 
+               focus:ring-blue-500 transition ease-in-out duration-150"
+      />
 
-    <!-- Correo -->
-    <div>
-      <input class="form__input" type="email" name="correo_destinatario" id="correo_destinatario" placeholder=" " required />
-      <label class="form__label" for="correo_destinatario">Correo destinatario</label>
-    </div>
+      <label class="text-sm mb-2 text-gray-200 cursor-pointer">Correo destinatario</label>
+      <input
+        type="email"
+        name="correo_destinatario"
+        required
+        class="bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 
+               focus:bg-gray-600 focus:outline-none focus:ring-1 
+               focus:ring-blue-500 transition ease-in-out duration-150"
+      />
 
-    <button type="submit">Generar</button>
-  </form>
+      <button
+        type="submit"
+        class="bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 
+               hover:from-indigo-600 hover:to-blue-600 transition ease-in-out duration-150"
+      >
+        Generar
+      </button>
+    </form>
 
-  <div id="message"></div>
+    <div id="message" class="mt-4 font-bold text-gray-200"></div>
+  </div>
 
   <script>
     document.getElementById("reporteForm").addEventListener("submit", async (e) => {
