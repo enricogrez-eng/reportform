@@ -1,107 +1,88 @@
-/* Reset & base */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-html, body {
-  height: 100%;
-}
 body {
   margin: 0;
-  font-family: Inter, Arial, Helvetica, sans-serif;
-  background: #0b1220; /* dark background */
-  color: #e5e7eb;
-  display: flex;
+  padding: 0;
+  background: url("file:///Users/tumac.cl/Downloads/18702139_sep09.jpg") center center no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
   align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  justify-items: center;
+  font-family: 'Fjalla One', sans-serif;
+  color: #2A293E;
 }
 
-/* Container */
-.form-container {
-  width: 100%;
-  max-width: 420px;
-  background: #1f2937; /* gray-800 */
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
-  padding: 24px;
+/* Form container */
+.contact-us {
+  background: #f8f4e5;
+  padding: 50px 100px;
+  border: 2px solid rgba(0, 0, 0, 1);
+  box-shadow: 15px 15px 1px #434242, 15px 15px 1px 2px rgba(61, 60, 60, 0.94);
 }
 
-/* Heading */
-.form-container h2 {
-  font-size: 1.375rem;
-  margin: 0 0 20px;
-  color: #e5e7eb;
-  font-weight: 700;
+/* Form title */
+h1 {
   text-align: center;
+  margin-bottom: 30px;
+  font-size: 24pt;
 }
 
-/* Form layout */
-.form-container form {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Labels */
-.form-container label {
-  font-size: 0.9rem;
-  color: #e5e7eb;
-  margin-bottom: 6px;
-  cursor: pointer;
-}
-
-/* Inputs & Selects */
-.form-container input[type="text"],
-.form-container input[type="email"],
-.form-container input[type="date"],
-.form-container select {
+/* Inputs and selects */
+input,
+select {
+  display: block;
   width: 100%;
-  padding: 10px 12px;
-  background: #374151; /* gray-700 */
-  color: #e5e7eb;
+  font-size: 14pt;
+  line-height: 28pt;
+  font-family: 'Fjalla One', sans-serif;
+  margin-bottom: 28pt;
   border: none;
-  border-radius: 8px;
-  margin-bottom: 16px;
-  font-size: 0.95rem;
-  transition: background 0.12s ease, box-shadow 0.12s ease, transform 0.06s ease;
-}
-
-.form-container input::placeholder {
-  color: #9ca3af;
-}
-
-.form-container input:focus,
-.form-container select:focus {
+  border-bottom: 5px solid rgba(0, 0, 0, 1);
+  background: #f8f4e5;
+  min-width: 250px;
+  padding-left: 5px;
   outline: none;
-  background: #4b5563; /* gray-600 */
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
+  color: rgba(0, 0, 0, 1);
 }
 
-/* Buttons */
-.form-container button {
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: none;
+/* Focus effects */
+input:focus,
+select:focus {
+  border-bottom: 5px solid #ffa580;
+}
+
+/* Button */
+button {
+  display: block;
+  margin: 0 auto;
+  line-height: 28pt;
+  padding: 0 20px;
+  background: #a19f9f;
+  letter-spacing: 2px;
+  transition: 0.2s all ease-in-out;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 1);
+  box-shadow: 3px 3px 1px 1px #434242, 3px 3px 1px 2px rgba(0, 0, 0, 1);
   cursor: pointer;
-  font-weight: 700;
-  font-size: 0.98rem;
-  background: linear-gradient(to right, #6366f1, #3b82f6);
-  color: #fff;
-  transition: transform 0.12s ease, filter 0.12s ease;
-}
-.form-container button:hover {
-  transform: translateY(-1px);
-  filter: brightness(1.05);
-  background: linear-gradient(to right, #4f46e5, #2563eb);
 }
 
-/* Message */
-#message {
-  margin-top: 16px;
-  font-weight: 700;
-  color: #e5e7eb;
-  min-height: 1.2em;
+button:hover {
+  background: rgba(0, 0, 0, 1);
+  color: white;
+  border: 1px solid rgba(0, 0, 0, 1);
+}
+
+/* Text selection highlight */
+::selection {
+  background: #ffc8ff;
+}
+
+/* Autofill fix */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  border-bottom: 5px solid #95a4ff;
+  -webkit-text-fill-color: #2A293E;
+  -webkit-box-shadow: 0 0 0px 1000px #f8f4e5 inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
